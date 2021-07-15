@@ -1,0 +1,35 @@
+{
+  "name": "@tdajs/normal-form",
+  "version": "0.0.1",
+  "description": "Smith Normal Form and utility",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watch 'npm run build' ./src",
+    "bundle": "npm run build && browserify ./dist/index.js --s SC -o ./dist/min.js",
+    "doc": "npm run build && jsdoc -d docs/ dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tdajs/normal-form.git"
+  },
+  "author": "Sushovan Majhi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sushovan4/simplicial-complex/issues"
+  },
+  "homepage": "https://github.com/sushovan4/simplicial-complex#readme",
+  "dependencies": {
+    "numjs": "git+https://github.com/nicolaspanel/numjs.git"
+  },
+  "devDependencies": {
+    "@types/numjs": "^0.16.0",
+    "browserify": "^17.0.0",
+    "browserify-shim": "^3.8.14",
+    "jsdoc": "^3.6.7",
+    "typescript": "^4.3.5",
+    "watch": "^1.0.2"
+  }
+}
