@@ -100,6 +100,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#diag" class="tsd-kind-icon">diag</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#m" class="tsd-kind-icon">m</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#n" class="tsd-kind-icon">n</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#opts" class="tsd-kind-icon">opts</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
@@ -120,19 +121,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Normal<wbr>Form<span class="tsd-signature-symbol">(</span>mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="NormalForm.html" class="tsd-signature-type" data-tsd-kind="Class">NormalForm</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Normal<wbr>Form<span class="tsd-signature-symbol">(</span>mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/NFOpts.html" class="tsd-signature-type" data-tsd-kind="Interface">NFOpts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="NormalForm.html" class="tsd-signature-type" data-tsd-kind="Class">NormalForm</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L58">normal-form.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L86">normal-form.ts:86</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/NFOpts.html" class="tsd-signature-type" data-tsd-kind="Interface">NFOpts</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="NormalForm.html" class="tsd-signature-type" data-tsd-kind="Class">NormalForm</a></h4>
@@ -148,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">A<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L23">normal-form.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L46">normal-form.ts:46</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -161,7 +165,7 @@
 							<p>is a valid input matrix of size <code>2×3</code>; whereas,</p>
 							<pre><code class="language-ts"><span style="color: #000000">[[</span><span style="color: #098658">1</span><span style="color: #000000">,</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">3</span><span style="color: #000000">],[</span><span style="color: #098658">2</span><span style="color: #000000">,-</span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
 </code></pre>
-							<p>is considered a mal-formed input matrix.</p>
+							<p>is considered a malformed input matrix.</p>
 						</div>
 					</div>
 				</section>
@@ -171,7 +175,7 @@
 					<div class="tsd-signature tsd-kind-icon">D<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L56">normal-form.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L79">normal-form.ts:79</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -188,7 +192,7 @@
 					<div class="tsd-signature tsd-kind-icon">P<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L38">normal-form.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L61">normal-form.ts:61</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -203,7 +207,7 @@
 					<div class="tsd-signature tsd-kind-icon">Q<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L43">normal-form.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L66">normal-form.ts:66</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -218,7 +222,7 @@
 					<div class="tsd-signature tsd-kind-icon">diag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L48">normal-form.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L71">normal-form.ts:71</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -234,7 +238,7 @@
 					<div class="tsd-signature tsd-kind-icon">m<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L33">normal-form.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L56">normal-form.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -249,12 +253,27 @@
 					<div class="tsd-signature tsd-kind-icon">n<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L28">normal-form.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L51">normal-form.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Number of rows of <code>A</code></p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="opts" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> opts</h3>
+					<div class="tsd-signature tsd-kind-icon">opts<span class="tsd-signature-symbol">:</span> <a href="../interfaces/NFOpts.html" class="tsd-signature-type" data-tsd-kind="Interface">NFOpts</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L84">normal-form.ts:84</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Optional arguments</p>
 						</div>
 					</div>
 				</section>
@@ -271,7 +290,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L149">normal-form.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L176">normal-form.ts:176</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -294,7 +313,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L95">normal-form.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L122">normal-form.ts:122</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -317,7 +336,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L134">normal-form.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L161">normal-form.ts:161</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -343,7 +362,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L82">normal-form.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/f1bb5b5/src/normal-form.ts#L109">normal-form.ts:109</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -391,6 +410,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="NormalForm.html#n" class="tsd-kind-icon">n</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="NormalForm.html#opts" class="tsd-kind-icon">opts</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="NormalForm.html#diagonalizePivot" class="tsd-kind-icon">diagonalize<wbr>Pivot</a>
 							</li>
@@ -407,6 +429,9 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/NFOpts.html" class="tsd-kind-icon">NFOpts</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/Options.html" class="tsd-kind-icon">Options</a>
 					</li>

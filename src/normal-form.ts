@@ -3,6 +3,29 @@ import { exchangeCols, exchangeRows, replaceCol, replaceRow, multiplyRow, multip
 import { isReducible, isZero, minimalEntry } from './utils' 
 
 /**
+ * Optional arguments
+ * @category Normal Form
+ */
+interface NFOpts {
+    /**
+     * If `true`, the input is left unchanged, and the reduced matrix `D`
+     * is a new matrix. Otherwise, `A` is mutated to `D`, and the reference to
+     * `A` to returned as `D`. Default is `true`.
+     */
+    copy?: boolean,
+    /**
+     * Updates the basechange matrices `P` and `Q` if `true`. If set to `false`, 
+     * the matrices remains empty.
+     */
+    changeBases?: boolean 
+}
+
+const DefaultNFOpts: NFOpts = {
+    copy: true,
+    changeBases: true
+}
+
+/**
  * Defines the main class for Smith normal form.
  * @category Reduction
  */
@@ -18,7 +41,7 @@ class NormalForm {
      * ```ts
      * [[1,2,3],[2,-5]]
      * ```
-     * is considered a mal-formed input matrix.
+     * is considered a malformed input matrix.
      */
     readonly A: number[][];
 
@@ -55,10 +78,12 @@ class NormalForm {
      */
     D: number[][];
     
-    constructor(mat: number[][], options?: {
-            copy: boolean,
-            changeBasis: boolean,
-        }) 
+    /** 
+     * Optional arguments
+     */
+    opts?: NFOpts;
+
+    constructor(mat: number[][], options?: NFOpts)
     {
         if(mat && mat.length === 0)
             throw new Error('Matrix is empty.');
@@ -69,17 +94,15 @@ class NormalForm {
 
         if(isZero(mat))
             throw new Error('Matrix has all zero entries.');
-            
-        this.A = copyMat(mat);
-        this.n = mat.length;
-        this.m = mat[0].length;
-        this.P = idMat(this.n);
-        this.Q = idMat(this.m);
+        
+        this.opts = {...DefaultNFOpts,...options};
+        this.A = this.opts.copy ? copyMat(mat) : mat;
+        this.n = this.A.length;
+        this.m = this.A[0].length;
+        [this.P, this.Q] = this.opts.changeBases ? [idMat(this.n),idMat(this.m)] : [[],[]];
         this.diag = new Array<number>();
-        this.D = mat;
+        this.D = this.A;
         this.reduce( );
-
-        //console.log(equalMatrix(multiplyMat( multiplyMat(this.S, this.D), this.T), this.A));
     }
 
     // Main reduction method
@@ -170,4 +193,4 @@ class NormalForm {
         }
     }
 }
-export { NormalForm };
+export { NormalForm, NFOpts };
