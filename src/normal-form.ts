@@ -17,12 +17,27 @@ interface NFOpts {
      * Updates the basechange matrices `P` and `Q` if `true`. If set to `false`, 
      * the matrices remains empty.
      */
-    changeBases?: boolean 
+    changeBases?: boolean,
+    /**
+     * 
+     */
+    beforeFn: (step: ReductionStep) => void,
+    /**
+     * 
+     */
+    afterFn: (step: ReductionStep) => void
 }
 
 const DefaultNFOpts: NFOpts = {
     copy: true,
-    changeBases: true
+    changeBases: true,
+    beforeFn: () => {},
+    afterFn: () => {}
+}
+
+interface ReductionStep {
+    name: string,
+    args?: any
 }
 
 /**
@@ -81,7 +96,7 @@ class NormalForm {
     /** 
      * Optional arguments
      */
-    opts?: NFOpts;
+    opts: NFOpts;
 
     constructor(mat: number[][], options?: NFOpts)
     {
@@ -96,27 +111,32 @@ class NormalForm {
             throw new Error('Matrix has all zero entries.');
         
         this.opts = {...DefaultNFOpts,...options};
+        
         this.A = this.opts.copy ? copyMat(mat) : mat;
         this.n = this.A.length;
         this.m = this.A[0].length;
-        [this.P, this.Q] = this.opts.changeBases ? [idMat(this.n),idMat(this.m)] : [[],[]];
+        [this.P, this.Q] = this.opts.changeBases ? [idMat(this.n), idMat(this.m)] : [[],[]];
         this.diag = new Array<number>();
         this.D = this.A;
-        this.reduce( );
+        this.reduce(0, Math.min(this.m, this.n));
+        //this.reduce(0, 1);
     }
 
-    // Main reduction method
-    private reduce( ) {
-        let offset: number = 0;        
+    private reduce(startOffset: number, endOffset: number) {
+        if( startOffset >= endOffset || isZero(this.D, startOffset) )
+            return;
         
-        while(offset < this.m && offset < this.n && !isZero(this.D,offset)) {
-            let [i,j] = this.improvePivot(offset);
-            this.movePivot([i,j],offset);
-            this.diagonalizePivot(offset);
-            
-            this.diag.push(this.D[offset][offset]);
-            offset++;
-        }
+        this.opts.beforeFn({ name: 'offset', args: [startOffset, endOffset] }); // step
+        
+        let [i,j] = this.improvePivot(startOffset);
+        
+        this.movePivot([i,j], startOffset);
+        
+        this.diagonalizePivot(startOffset);
+        
+        this.diag.push(this.D[startOffset][startOffset]);
+        
+        this.reduce(startOffset + 1, endOffset);
     }
 
     private improvePivot(offset: number) {
@@ -124,26 +144,37 @@ class NormalForm {
 
         while(true) {
             [i,j]  = minimalEntry(this.D, offset);
+            
             // Position of the element non-divisible by pivot or false
             let position = isReducible([i,j], this.D, offset);
             if(!position)
-                break;
+            break;
+            
+            this.opts.afterFn({ name: 'minimal', args: [i, j] }); // step
             
             let [s,t] = position;
+            this.opts.afterFn({ name: 'position', args: [s, t] }); // step
+            
             if(j === t) {
                 let q = - Math.floor(this.D[s][j] / this.D[i][j]);
+                this.opts.beforeFn({ name: 'replaceRow', args: [s, i, q, offset] }); // step
                 replaceRow(s, i, q, this.D, { offset: offset });
+                this.opts.beforeFn({ name: 'replaceCol', args: [i, s, - q, offset] }); // step
                 replaceCol(i, s, - q, this.Q, { offset: 0 }); //
             }
             else if(i === s) {
                 let q = - Math.floor(this.D[i][t] / this.D[i][j]);
+                this.opts.beforeFn({ name: 'replaceCol', args: [t, j, q, offset] }); // step
                 replaceCol(t, j, q, this.D, { offset: offset});
+                this.opts.beforeFn({ name: 'replaceRow', args: [t, j, q, offset] }); // step
                 replaceCol(t, j, q, this.P, { offset: 0}); //
             }
             else {
                 if(this.D[s][j] !== 0) {
                     let q = - Math.floor(this.D[s][j] / this.D[i][j]);
+                    this.opts.beforeFn({ name: 'replaceRow', args: [s, i, q, offset] }); // step
                     replaceRow(s, i, q, this.D, { offset: offset });
+                    this.opts.beforeFn({ name: 'replaceCol', args: [i, s, - q, offset] }); // step
                     replaceCol(i, s, - q, this.Q, { offset: 0}); //
                 }
                 
