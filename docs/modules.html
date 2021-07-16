@@ -68,16 +68,25 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+							<h3>Elementary Operations Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function"><a href="modules.html#changeBasis" class="tsd-kind-icon">change<wbr>Basis</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/Options.html" class="tsd-kind-icon">Options</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Elementary Operations Functions</h3>
+							<ul class="tsd-index-list">
 								<li class="tsd-kind-function"><a href="modules.html#exchangeCols" class="tsd-kind-icon">exchange<wbr>Cols</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#exchangeRows" class="tsd-kind-icon">exchange<wbr>Rows</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#mat2Tex" class="tsd-kind-icon">mat2<wbr>Tex</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#multiplyCol" class="tsd-kind-icon">multiply<wbr>Col</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#multiplyRow" class="tsd-kind-icon">multiply<wbr>Row</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#replaceCol" class="tsd-kind-icon">replace<wbr>Col</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#replaceRow" class="tsd-kind-icon">replace<wbr>Row</a></li>
+							</ul>
+							<h3>Other Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function"><a href="modules.html#changeBasis" class="tsd-kind-icon">change<wbr>Basis</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#mat2Tex" class="tsd-kind-icon">mat2<wbr>Tex</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#vec2Tex" class="tsd-kind-icon">vec2<wbr>Tex</a></li>
 							</ul>
 						</section>
@@ -85,7 +94,328 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
+				<h2>Elementary Operations Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="exchangeCols" class="tsd-anchor"></a>
+					<h3>exchange<wbr>Cols</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">exchange<wbr>Cols<span class="tsd-signature-symbol">(</span>j<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, k<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/cd368ed/src/elementary-ops.ts#L124">elementary-ops.ts:124</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs the elementary column operation to
+									exchanges the j-th and k-th columns of a matrix.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>j: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>k: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>index of the column to be exchanged</p>
+									</div>
+								</li>
+								<li>
+									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>matrix to perform the operation on</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional arguments; see <a href="interfaces/Options.html">Options</a> for more details</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>array of two matrices. The first matrix is the reduced matrix, and the second
+							matrix is the basechange matrix (if <code>changeBase: true</code> is set in the <code>options</code>)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="exchangeRows" class="tsd-anchor"></a>
+					<h3>exchange<wbr>Rows</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">exchange<wbr>Rows<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, k<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span>result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span>baseChangeMat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/cd368ed/src/elementary-ops.ts#L47">elementary-ops.ts:47</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs the elementary row operation to
+									exchanges the i-th and k-th rows of a matrix.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>i: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>index of the row to be exchanged</p>
+									</div>
+								</li>
+								<li>
+									<h5>k: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>index of the row to be exchanged</p>
+									</div>
+								</li>
+								<li>
+									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>matrix to perform the operation on</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional arguments; see <a href="interfaces/Options.html">Options</a> for more details</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">[</span>result<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span>baseChangeMat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">]</span></h4>
+							<p>array of two matrices. The first matrix is the reduced matrix, and the second
+							matrix is the basechange matrix (if <code>changeBase: true</code> is set in the <code>options</code>)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="multiplyCol" class="tsd-anchor"></a>
+					<h3>multiply<wbr>Col</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">multiply<wbr>Col<span class="tsd-signature-symbol">(</span>j<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, q<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/cd368ed/src/elementary-ops.ts#L178">elementary-ops.ts:178</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs the elementary column operation to
+									multiply the entries of the i-th column by q of a matrix.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>j: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>index of the column to be multiplied</p>
+									</div>
+								</li>
+								<li>
+									<h5>q: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(integer) multiplier</p>
+									</div>
+								</li>
+								<li>
+									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>matrix to perform the operation on</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional arguments; see <a href="interfaces/Options.html">Options</a> for more details</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>array of two matrices. The first matrix is the reduced matrix, and the second
+							matrix is the basechange matrix (if <code>changeBase: true</code> is set in the <code>options</code>)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="multiplyRow" class="tsd-anchor"></a>
+					<h3>multiply<wbr>Row</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">multiply<wbr>Row<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, q<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/cd368ed/src/elementary-ops.ts#L101">elementary-ops.ts:101</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs the elementary row operation to
+									multiply the entries of the i-th row by q of a matrix.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>i: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>index of the row to be multiplied</p>
+									</div>
+								</li>
+								<li>
+									<h5>q: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(integer) multiplier</p>
+									</div>
+								</li>
+								<li>
+									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>matrix to perform the operation on</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional arguments; see <a href="interfaces/Options.html">Options</a> for more details</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>array of two matrices. The first matrix is the reduced matrix, and the second
+							matrix is the basechange matrix (if <code>changeBase: true</code> is set in the <code>options</code>)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="replaceCol" class="tsd-anchor"></a>
+					<h3>replace<wbr>Col</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">replace<wbr>Col<span class="tsd-signature-symbol">(</span>j<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, k<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, q<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/cd368ed/src/elementary-ops.ts#L153">elementary-ops.ts:153</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs the elementary column operation to
+									replace the j-th column by q * the k-th column of a matrix.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>j: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>k: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>index of the other column</p>
+									</div>
+								</li>
+								<li>
+									<h5>q: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(integer) mutiplier</p>
+									</div>
+								</li>
+								<li>
+									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>matrix to perform the operation on</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional arguments; see <a href="interfaces/Options.html">Options</a> for more details</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>array of two matrices. The first matrix is the reduced matrix, and the second
+							matrix is the basechange matrix (if <code>changeBase: true</code> is set in the <code>options</code>)</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="replaceRow" class="tsd-anchor"></a>
+					<h3>replace<wbr>Row</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">replace<wbr>Row<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, k<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, q<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/cd368ed/src/elementary-ops.ts#L75">elementary-ops.ts:75</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Performs the elementary row operation to
+									replace the i-th row by q * the k-th row of a matrix.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>i: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>index of the row to be replaced</p>
+									</div>
+								</li>
+								<li>
+									<h5>k: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>index of the other row</p>
+									</div>
+								</li>
+								<li>
+									<h5>q: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(integer) mutiplier</p>
+									</div>
+								</li>
+								<li>
+									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>matrix to perform the operation on</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="interfaces/Options.html" class="tsd-signature-type" data-tsd-kind="Interface">Options</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional arguments; see <a href="interfaces/Options.html">Options</a> for more details</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>array of two matrices. The first matrix is the reduced matrix, and the second
+							matrix is the basechange matrix (if <code>changeBase: true</code> is set in the <code>options</code>)</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Other Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="changeBasis" class="tsd-anchor"></a>
 					<h3>change<wbr>Basis</h3>
@@ -96,7 +426,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/utils.ts#L20">utils.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/cd368ed/src/utils.ts#L20">utils.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -113,70 +443,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="exchangeCols" class="tsd-anchor"></a>
-					<h3>exchange<wbr>Cols</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">exchange<wbr>Cols<span class="tsd-signature-symbol">(</span>j<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, k<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/elementary-ops.ts#L57">elementary-ops.ts:57</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>j: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>k: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">Options</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="exchangeRows" class="tsd-anchor"></a>
-					<h3>exchange<wbr>Rows</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">exchange<wbr>Rows<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, k<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/elementary-ops.ts#L15">elementary-ops.ts:15</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>i: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>k: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">Options</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="mat2Tex" class="tsd-anchor"></a>
 					<h3>mat2<wbr>Tex</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -186,7 +452,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/utils.ts#L1">utils.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/cd368ed/src/utils.ts#L1">utils.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -200,140 +466,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="multiplyCol" class="tsd-anchor"></a>
-					<h3>multiply<wbr>Col</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">multiply<wbr>Col<span class="tsd-signature-symbol">(</span>j<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, q<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/elementary-ops.ts#L88">elementary-ops.ts:88</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>j: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>q: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">Options</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="multiplyRow" class="tsd-anchor"></a>
-					<h3>multiply<wbr>Row</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">multiply<wbr>Row<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, q<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/elementary-ops.ts#L45">elementary-ops.ts:45</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>i: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>q: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">Options</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="replaceCol" class="tsd-anchor"></a>
-					<h3>replace<wbr>Col</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">replace<wbr>Col<span class="tsd-signature-symbol">(</span>j<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, k<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, q<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/elementary-ops.ts#L74">elementary-ops.ts:74</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>j: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>k: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>q: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">Options</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="replaceRow" class="tsd-anchor"></a>
-					<h3>replace<wbr>Row</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">replace<wbr>Row<span class="tsd-signature-symbol">(</span>i<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, k<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, q<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Options</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/elementary-ops.ts#L30">elementary-ops.ts:30</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>i: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>k: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>q: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">Options</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="vec2Tex" class="tsd-anchor"></a>
 					<h3>vec2<wbr>Tex</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -343,7 +475,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/utils.ts#L14">utils.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/cd368ed/src/utils.ts#L14">utils.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -370,6 +502,9 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
 						<a href="classes/NormalForm.html" class="tsd-kind-icon">Normal<wbr>Form</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/Options.html" class="tsd-kind-icon">Options</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#changeBasis" class="tsd-kind-icon">change<wbr>Basis</a>
@@ -410,6 +545,9 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
