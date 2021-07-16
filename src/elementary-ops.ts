@@ -1,67 +1,101 @@
-import { copyMat } from "./utils";
+import { copyMat , idMat } from "./utils";
 
-// Elementary operations
-export function replaceRow(i: number, k: number, q: number, mat: number[][], offset: number) {
-    for(let j = offset; j < mat[0].length; j++)
-        mat[i][j] += q * mat[k][j];
+interface Options {
+    offset?: number,
+    copy?: boolean,
+    changeBase?: boolean
+}
+
+const DefaultOptions: Options = {
+    offset: 0,
+    copy: true,
+    changeBase: true
+}
+
+// Elementary Row operations
+export function exchangeRows(i: number, k: number, mat: number[][], options?: Options) {
+    const opts = {...DefaultOptions, ...options};
+    const result = opts.copy ? copyMat(mat) : mat;
     
-    return {
-        operation: 'replaceRow',
-        args: [i,k,q],
-        output: copyMat(mat)
-    };
+    let tmp = result[i];
+    result[i] = result[k];
+    result[k] = tmp;
+
+    const baseChangeMat: number[][] = opts.changeBase ? exchangeRows(i, k, idMat(result.length), {
+        copy: false,
+        changeBase: false
+    })[0] : [];
+    return [result, baseChangeMat];
 }
 
-export function replaceCol(j: number, k: number, q: number, mat: number[][], offset: number) {
-    for(let i = offset; i < mat.length; i++)
-        mat[i][j] += q * mat[i][k];
-    return {
-        operation: 'replaceCol',
-        args: [j,k,q],
-        output: copyMat(mat)
-    };
+export function replaceRow(i: number, k: number, q: number, mat: number[][], options?: Options) {
+    const opts = {...DefaultOptions, ...options};
+    const result = opts.copy ? copyMat(mat) : mat;
+    
+    for(let j = opts.offset || 0; j < result[0].length; j++)
+        result[i][j] += q * result[k][j];
+    
+    const baseChangeMat: number[][] = opts.changeBase ? replaceRow(i, k, - q, idMat(result.length), {
+        copy: false, 
+        changeBase: false
+    })[0] : [];
+    return [result, baseChangeMat];
 }
 
-export function exchangeRows(i: number, k: number, mat: number[][]) {
-    let tmp = mat[i];
-    mat[i] = mat[k];
-    mat[k] = tmp;
-    return {
-        operation: 'exchangeRows',
-        args: [i,k],
-        output: copyMat(mat)
-    };
+export function multiplyRow(i: number, q: number, mat: number[][], options?: Options) {
+    const opts = {...DefaultOptions, ...options};
+    const result = opts.copy ? copyMat(mat) : mat;
+    result[i] = result[i].map(val => q * val );
+
+    const baseChangeMat: number[][] = opts.changeBase ? multiplyRow(i, - q, idMat(result.length), {
+        copy: false,
+        changeBase: false
+    })[0] : [];
+    return [result, baseChangeMat];
 }
 
-export function exchangeCols(j: number, k: number, mat: number[][]) {
-    for(let i = 0; i < mat.length; i++) {
-        let tmp = mat[i][j];
-        mat[i][j] = mat[i][k];
-        mat[i][k] = tmp;
+// Elementary Column Operations
+export function exchangeCols(j: number, k: number, mat: number[][], options?: Options) {
+    const opts = {...DefaultOptions, ...options};
+    const result = opts.copy ? copyMat(mat) : mat;
+    
+    for(let i = 0; i < result.length; i++) {
+        let tmp = result[i][j];
+        result[i][j] = result[i][k];
+        result[i][k] = tmp;
     }
-    return {
-        operation: 'exchangeCols',
-        args: [j,k],
-        output: copyMat(mat)
-    };
+
+    const baseChangeMat: number[][] = opts.changeBase ? exchangeCols(j, k, idMat(result[0].length), {
+        copy: false,
+        changeBase: false
+    })[0] : [];
+    return [result, baseChangeMat];
 }
 
-export function multiplyRow(i: number, mat: number[][]) {
-    mat[i] = mat[i].map(val => { return -val });
-    return {
-        operation: 'multiplyRow',
-        args: [i],
-        output: copyMat(mat)
-    };
+export function replaceCol(j: number, k: number, q: number, mat: number[][], options?: Options) {
+    const opts = {...DefaultOptions, ...options};
+    const result = opts.copy ? copyMat(mat) : mat;
+    
+    for(let i = opts.offset || 0; i < result.length; i++)
+        result[i][j] += q * result[i][k];
+    
+    const baseChangeMat: number[][] = opts.changeBase ? replaceCol(j, k, q, idMat(result[0].length), {
+        copy: false,
+        changeBase: false
+    })[0] : [];
+    return [result, baseChangeMat];
 }
 
-export function multiplyCol(j: number, mat: number[][]) {
-    for(let i = 0; i < mat.length; i++)
-        mat[i][j] *= -1;
+export function multiplyCol(j: number, q: number, mat: number[][], options?: Options) {
+    const opts = {...DefaultOptions, ...options};
+    const result = opts.copy ? copyMat(mat) : mat;
 
-    return {
-        operation: 'multiplyCol',
-        args: [j],
-        output: copyMat(mat)
-    };
+    for(let i = 0; i < result.length; i++)
+        result[i][j] *= q;
+
+    const baseChangeMat: number[][] = opts.changeBase ? multiplyCol(j, q, idMat(result[0].length), {
+        copy: false,
+        changeBase: false
+    })[0] : [];
+    return [result, baseChangeMat];
 }
