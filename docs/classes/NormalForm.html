@@ -1,0 +1,412 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>NormalForm | @tdajs/normal-form</title>
+	<meta name="description" content="Documentation for @tdajs/normal-form">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@tdajs/normal-form</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../modules.html">@tdajs/normal-form</a>
+				</li>
+				<li>
+					<a href="NormalForm.html">NormalForm</a>
+				</li>
+			</ul>
+			<h1>Class NormalForm</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">NormalForm</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="NormalForm.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#A" class="tsd-kind-icon">A</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#D" class="tsd-kind-icon">D</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#P" class="tsd-kind-icon">P</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#Q" class="tsd-kind-icon">Q</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#diag" class="tsd-kind-icon">diag</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#m" class="tsd-kind-icon">m</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#n" class="tsd-kind-icon">n</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="NormalForm.html#diagonalizePivot" class="tsd-kind-icon">diagonalize<wbr>Pivot</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="NormalForm.html#improvePivot" class="tsd-kind-icon">improve<wbr>Pivot</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="NormalForm.html#movePivot" class="tsd-kind-icon">move<wbr>Pivot</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="NormalForm.html#reduce" class="tsd-kind-icon">reduce</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Normal<wbr>Form<span class="tsd-signature-symbol">(</span>mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, recordSteps<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="NormalForm.html" class="tsd-signature-type" data-tsd-kind="Class">NormalForm</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L13">normal-form.ts:13</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5>recordSteps: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="NormalForm.html" class="tsd-signature-type" data-tsd-kind="Class">NormalForm</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="A" class="tsd-anchor"></a>
+					<h3>A</h3>
+					<div class="tsd-signature tsd-kind-icon">A<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L5">normal-form.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="D" class="tsd-anchor"></a>
+					<h3>D</h3>
+					<div class="tsd-signature tsd-kind-icon">D<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L11">normal-form.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="P" class="tsd-anchor"></a>
+					<h3>P</h3>
+					<div class="tsd-signature tsd-kind-icon">P<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L8">normal-form.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="Q" class="tsd-anchor"></a>
+					<h3>Q</h3>
+					<div class="tsd-signature tsd-kind-icon">Q<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L9">normal-form.ts:9</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="diag" class="tsd-anchor"></a>
+					<h3>diag</h3>
+					<div class="tsd-signature tsd-kind-icon">diag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L10">normal-form.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="m" class="tsd-anchor"></a>
+					<h3>m</h3>
+					<div class="tsd-signature tsd-kind-icon">m<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L7">normal-form.ts:7</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="n" class="tsd-anchor"></a>
+					<h3>n</h3>
+					<div class="tsd-signature tsd-kind-icon">n<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L6">normal-form.ts:6</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="diagonalizePivot" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> diagonalize<wbr>Pivot</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">diagonalize<wbr>Pivot<span class="tsd-signature-symbol">(</span>offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L104">normal-form.ts:104</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>offset: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="improvePivot" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> improve<wbr>Pivot</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">improve<wbr>Pivot<span class="tsd-signature-symbol">(</span>offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L50">normal-form.ts:50</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>offset: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="movePivot" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> move<wbr>Pivot</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">move<wbr>Pivot<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L89">normal-form.ts:89</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+								</li>
+								<li>
+									<h5>offset: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="reduce" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> reduce</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">reduce<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a57f20d/src/normal-form.ts#L37">normal-form.ts:37</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="NormalForm.html" class="tsd-kind-icon">Normal<wbr>Form</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="NormalForm.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="NormalForm.html#A" class="tsd-kind-icon">A</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="NormalForm.html#D" class="tsd-kind-icon">D</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="NormalForm.html#P" class="tsd-kind-icon">P</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="NormalForm.html#Q" class="tsd-kind-icon">Q</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="NormalForm.html#diag" class="tsd-kind-icon">diag</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="NormalForm.html#m" class="tsd-kind-icon">m</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="NormalForm.html#n" class="tsd-kind-icon">n</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="NormalForm.html#diagonalizePivot" class="tsd-kind-icon">diagonalize<wbr>Pivot</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="NormalForm.html#improvePivot" class="tsd-kind-icon">improve<wbr>Pivot</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="NormalForm.html#movePivot" class="tsd-kind-icon">move<wbr>Pivot</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="NormalForm.html#reduce" class="tsd-kind-icon">reduce</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#changeBasis" class="tsd-kind-icon">change<wbr>Basis</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#exchangeCols" class="tsd-kind-icon">exchange<wbr>Cols</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#exchangeRows" class="tsd-kind-icon">exchange<wbr>Rows</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#mat2Tex" class="tsd-kind-icon">mat2<wbr>Tex</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#multiplyCol" class="tsd-kind-icon">multiply<wbr>Col</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#multiplyRow" class="tsd-kind-icon">multiply<wbr>Row</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#replaceCol" class="tsd-kind-icon">replace<wbr>Col</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#replaceRow" class="tsd-kind-icon">replace<wbr>Row</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#vec2Tex" class="tsd-kind-icon">vec2<wbr>Tex</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

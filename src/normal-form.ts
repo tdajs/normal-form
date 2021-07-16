@@ -1,5 +1,5 @@
-import { copyMat, idMat } from './utils'
-import { replaceCol, replaceRow, exchangeCols, exchangeRows, multiplyCol, multiplyRow } from './elementary-ops'; 
+import { copyMat, idMat } from './utils';
+import { exchangeCols, exchangeRows, replaceCol, replaceRow, multiplyRow, multiplyCol } from './elementary-ops';
 
 class NormalForm {
     A: number[][];
@@ -9,7 +9,7 @@ class NormalForm {
     Q: number[][];
     diag: number[];
     D: number[][];
-    
+        
     constructor(mat: number[][],recordSteps: boolean = false) {
         if(mat && mat.length === 0)
             throw new Error('Matrix is empty.');
