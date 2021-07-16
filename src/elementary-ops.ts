@@ -72,7 +72,8 @@ export function exchangeRows(i: number, k: number, mat: number[][], options?: Op
  * @returns array of two matrices. The first matrix is the reduced matrix, and the second
  * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
  */
-export function replaceRow(i: number, k: number, q: number, mat: number[][], options?: Options) {
+export function replaceRow(i: number, k: number, q: number, mat: number[][], options?: Options):
+        [result: number[][], baseChangeMat: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     
@@ -98,7 +99,8 @@ export function replaceRow(i: number, k: number, q: number, mat: number[][], opt
  * @returns array of two matrices. The first matrix is the reduced matrix, and the second
  * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
  */
-export function multiplyRow(i: number, q: number, mat: number[][], options?: Options) {
+export function multiplyRow(i: number, q: number, mat: number[][], options?: Options):
+        [result: number[][], baseChangeMat: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     result[i] = result[i].map(val => q * val );
@@ -121,7 +123,8 @@ export function multiplyRow(i: number, q: number, mat: number[][], options?: Opt
  * @returns array of two matrices. The first matrix is the reduced matrix, and the second
  * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
  */
-export function exchangeCols(j: number, k: number, mat: number[][], options?: Options) {
+export function exchangeCols(j: number, k: number, mat: number[][], options?: Options):
+        [result: number[][], baseChangeMat: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     
@@ -150,7 +153,8 @@ export function exchangeCols(j: number, k: number, mat: number[][], options?: Op
  * @returns array of two matrices. The first matrix is the reduced matrix, and the second
  * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
  */
-export function replaceCol(j: number, k: number, q: number, mat: number[][], options?: Options) {
+export function replaceCol(j: number, k: number, q: number, mat: number[][], options?: Options):
+        [result: number[][], baseChangeMat: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     
@@ -175,7 +179,8 @@ export function replaceCol(j: number, k: number, q: number, mat: number[][], opt
  * @returns array of two matrices. The first matrix is the reduced matrix, and the second
  * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
  */
-export function multiplyCol(j: number, q: number, mat: number[][], options?: Options) {
+export function multiplyCol(j: number, q: number, mat: number[][], options?: Options):
+        [result: number[][], baseChangeMat: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     
