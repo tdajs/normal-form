@@ -1,5 +1,12 @@
-export function mat2Tex(m: number[][]) {
-    const string = m.map((row) => {
+/**
+ * Generates a string that MathJax/KaTex can use to print
+ * a matrix.
+ * @param mat matrix to be printed
+ * @returns Latex/KaTex ready string
+ * @category Utility
+ */
+export function mat2Tex(mat: number[][]) {
+    const string = mat.map((row) => {
       return row.map((col) => col).join(' & ')
     }).join(" \\\\ ")
     
@@ -11,12 +18,27 @@ export function mat2Tex(m: number[][]) {
     return ss
 }
 
+/**
+ * Generates a string that MathJax/KaTex can use to print
+ * a vector.
+ * @param vec vector to be printed 
+ * @returns Latex/KaTex ready string
+ * @category Utility
+ */
 export function vec2Tex(vec: number[]) {
     const string = "\\left(" +  vec.join(', ') + "\\right)";
     const ss = string.replace('/\/\g', '\\')
     return ss;
 }
 
+/**
+ * Transforms an old basis to a new basis by post multiplying
+ * by the basechange matrix.
+ * @param oldBasis vector of basis elements
+ * @param basechangeMat basechange matrix
+ * @returns vector of new basis
+ * @category Utility
+ */
 export function changeBasis(oldBasis: string[], basechangeMat: number[][]) {
     const newBasis = [];
     const dim = oldBasis.length;
@@ -45,12 +67,12 @@ export function changeBasis(oldBasis: string[], basechangeMat: number[][]) {
     return newBasis;
 }
 
-export function exchangeRowsMat(i: number, j: number, dim: number) {
-  // const mat = nj.identity(dim);
-
-}
-
-
+/**
+ * Generates a copy of the identity matrix of a given size.
+ * @param size 
+ * @returns an identity matrix
+ * @category Utility
+ */
 export function idMat(size: number) {
     let mat = new Array<number[]>(size);
     for(let i = 0; i < size; i++) {
@@ -63,17 +85,26 @@ export function idMat(size: number) {
     return mat;
 }
 
-export function copyMat(mat: number[][]) {
+/**
+ * Returns a shallow copy/clone of a matrix
+ * @param mat matrix to be copied
+ * @returns shallow copy of the input matrix
+ * @category Utility
+ */
+export function copyMat(mat: any[][]) {
     return mat.map(col => {
         return col.slice();
     });
 }
 
-export function printMat(mat: number[][]) {
-    for(let row of mat)
-        console.log(row.join(' '));
-}
-
+/**
+ * Post multiplies the matrix A by the matrix B, provided they
+ * are of compatible dimensions. 
+ * @param A 
+ * @param B 
+ * @returns a new copy of the product matrix
+ * @category Utility
+ */
 export function multiplyMat(A: number[][], B: number[][]) {
     if(A[0].length !== B.length)
         throw new Error('Matrix dimension mismatch.');
@@ -93,6 +124,13 @@ export function multiplyMat(A: number[][], B: number[][]) {
     return prod;    
 }
 
+/**
+ * Checks equality of two matrices
+ * @param A 
+ * @param B 
+ * @returns `true` if equal; otherwise, `false`
+ * @category Utility
+ */
 export function equalMatrix(A: number[][], B: number[][]) {
     if(A.length !== B.length || A[0].length !== B[0].length) {
         return false;
@@ -105,4 +143,53 @@ export function equalMatrix(A: number[][], B: number[][]) {
                 return false;
             }
     return true;                
+}
+
+export function isZero(mat: number[][], offset: number = 0) {
+    for(let i = offset; i <  mat.length; i++)
+        for(let j = offset; j < mat[0].length; j++) {
+            if(mat[i][j] !== 0)
+            return false;
+    }
+    return true;    
+}
+
+export function isReducible([s,t]: [number,number], mat: number[][], offset: number) {
+    let alpha = Math.abs(mat[s][t]);
+    for(let i = offset; i < mat.length; i++)
+        for(let j = offset; j < mat[0].length; j++) {
+            if(mat[i][j] % alpha !== 0) {
+                return [i,j];
+            }
+        }
+    return false;
+}
+
+export function minimalEntry(mat: number[][], offset: number) {
+    if(mat.length === offset)
+        throw new Error('Matrix must be non-empty.');
+
+    let min = Number.MAX_VALUE;
+    let pos = new Array<number>(2);
+        
+    for(let i = offset; i < mat.length; i++) {
+        if(mat[i].length === offset)
+            throw new Error('Column must be non-empty.');
+            
+        for(let j = offset; j < mat[0].length; j++) {
+            if(!Number.isInteger(mat[i][j]))
+                throw new Error('Matrix can not have non-integer values.');
+                
+            let elm = mat[i][j];
+            if(Math.abs(elm) > 0 && Math.abs(min) > Math.abs(elm)) {
+                min = elm;
+                pos = [i,j];
+            }
+        }
+    }
+        
+    if(min === Number.MAX_VALUE)
+        throw new Error('Matrix can not have all zeros.');
+        
+    return pos;
 }

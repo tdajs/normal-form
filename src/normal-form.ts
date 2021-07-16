@@ -1,5 +1,10 @@
+/**
+ * Defines the main class for Smith normal form.
+ * @module
+ */
 import { copyMat, idMat } from './utils';
 import { exchangeCols, exchangeRows, replaceCol, replaceRow, multiplyRow, multiplyCol } from './elementary-ops';
+import { isReducible, isZero, minimalEntry } from './utils' 
 
 class NormalForm {
     A: number[][];
@@ -34,7 +39,7 @@ class NormalForm {
     }
 
     // Main reduction method
-    private reduce( ) {
+    reduce( ) {
         let offset: number = 0;        
         
         while(offset < this.m && offset < this.n && !isZero(this.D,offset)) {
@@ -47,7 +52,7 @@ class NormalForm {
         }
     }
 
-    private improvePivot(offset: number) {
+    improvePivot(offset: number) {
         let i,j: number; // Pivot position
 
         while(true) {
@@ -86,7 +91,7 @@ class NormalForm {
         return [i,j];
     }
 
-    private movePivot([i,j]: [number,number], offset: number) {
+    movePivot([i,j]: [number,number], offset: number) {
         if(i !== offset) {
             exchangeRows(offset, i, this.D);
             exchangeCols(offset, i, this.Q); //
@@ -101,7 +106,7 @@ class NormalForm {
         }
     }
 
-    private diagonalizePivot(offset: number) {
+    diagonalizePivot(offset: number) {
         // Make offset col zero
         for(let i = offset + 1; i < this.n; i++) {
             if(this.D[i][offset] === 0)
@@ -122,53 +127,3 @@ class NormalForm {
     }
 }
 export { NormalForm };
-
-function isZero(mat: number[][], offset: number = 0) {
-    for(let i = offset; i <  mat.length; i++)
-        for(let j = offset; j < mat[0].length; j++) {
-            if(mat[i][j] !== 0)
-            return false;
-    }
-    return true;    
-}
-
-function isReducible([s,t]: [number,number], mat: number[][], offset: number) {
-    let alpha = Math.abs(mat[s][t]);
-    for(let i = offset; i < mat.length; i++)
-        for(let j = offset; j < mat[0].length; j++) {
-            if(mat[i][j] % alpha !== 0) {
-                return [i,j];
-            }
-        }
-    return false;
-}
-
-function minimalEntry(mat: number[][], offset: number) {
-    if(mat.length === offset)
-        throw new Error('Matrix must be non-empty.');
-
-    let min = Number.MAX_VALUE;
-    let pos = new Array<number>(2);
-        
-    for(let i = offset; i < mat.length; i++) {
-        if(mat[i].length === offset)
-            throw new Error('Column must be non-empty.');
-            
-        for(let j = offset; j < mat[0].length; j++) {
-            if(!Number.isInteger(mat[i][j]))
-                throw new Error('Matrix can not have non-integer values.');
-                
-            let elm = mat[i][j];
-            if(Math.abs(elm) > 0 && Math.abs(min) > Math.abs(elm)) {
-                min = elm;
-                pos = [i,j];
-            }
-        }
-    }
-        
-    if(min === Number.MAX_VALUE)
-        throw new Error('Matrix can not have all zeros.');
-        
-    return pos;
-}
-    
