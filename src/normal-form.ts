@@ -1,21 +1,65 @@
-/**
- * Defines the main class for Smith normal form.
- * @module
- */
 import { copyMat, idMat } from './utils';
 import { exchangeCols, exchangeRows, replaceCol, replaceRow, multiplyRow, multiplyCol } from './elementary-ops';
 import { isReducible, isZero, minimalEntry } from './utils' 
 
+/**
+ * Defines the main class for Smith normal form.
+ * @category Reduction
+ */
 class NormalForm {
-    A: number[][];
-    n: number; // rows
-    m: number; // cols
+    /**
+     * A (non-zero) integer matrix to be reduced to normal form. The matrix
+     * `A` can be of any size, as long as it is a well-formed non-empty matrix.
+     * For example,
+     * ```ts
+     * [[1,2,3],[2,-5,0]]
+     * ```
+     * is a valid input matrix of size `2×3`; whereas, 
+     * ```ts
+     * [[1,2,3],[2,-5]]
+     * ```
+     * is considered a mal-formed input matrix.
+     */
+    readonly A: number[][];
+
+    /**
+     * Number of rows of `A`
+     */
+    readonly n: number;
+
+    /** 
+     * Number of columns of `A`
+     */
+    readonly m: number;
+
+    /**
+     * Basechange matrix of dimension `m`.
+     */
     P: number[][];
+
+    /**
+     * Basechange matrix of dimension `n`.
+     */
     Q: number[][];
+
+    /** Non-zero diagonal elements `d_0, d_2,..., d_k` after the reduction such that
+     * `d_0 | d_2 |...| d_k`. 
+     */
     diag: number[];
+
+    /** 
+     * Reduced diagonal matrix. Note that `D` may not be a square matrix. 
+     * ```text
+     * D = (inv Q)AP
+     * ```
+     */
     D: number[][];
-        
-    constructor(mat: number[][],recordSteps: boolean = false) {
+    
+    constructor(mat: number[][], options?: {
+            copy: boolean,
+            changeBasis: boolean,
+        }) 
+    {
         if(mat && mat.length === 0)
             throw new Error('Matrix is empty.');
             
@@ -39,7 +83,7 @@ class NormalForm {
     }
 
     // Main reduction method
-    reduce( ) {
+    private reduce( ) {
         let offset: number = 0;        
         
         while(offset < this.m && offset < this.n && !isZero(this.D,offset)) {
@@ -52,7 +96,7 @@ class NormalForm {
         }
     }
 
-    improvePivot(offset: number) {
+    private improvePivot(offset: number) {
         let i,j: number; // Pivot position
 
         while(true) {
@@ -91,7 +135,7 @@ class NormalForm {
         return [i,j];
     }
 
-    movePivot([i,j]: [number,number], offset: number) {
+    private movePivot([i,j]: [number,number], offset: number) {
         if(i !== offset) {
             exchangeRows(offset, i, this.D);
             exchangeCols(offset, i, this.Q); //
@@ -106,7 +150,7 @@ class NormalForm {
         }
     }
 
-    diagonalizePivot(offset: number) {
+    private diagonalizePivot(offset: number) {
         // Make offset col zero
         for(let i = offset + 1; i < this.n; i++) {
             if(this.D[i][offset] === 0)

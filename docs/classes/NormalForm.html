@@ -65,6 +65,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Defines the main class for Smith normal form.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -95,13 +102,13 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="NormalForm.html#n" class="tsd-kind-icon">n</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="NormalForm.html#diagonalizePivot" class="tsd-kind-icon">diagonalize<wbr>Pivot</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="NormalForm.html#improvePivot" class="tsd-kind-icon">improve<wbr>Pivot</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="NormalForm.html#movePivot" class="tsd-kind-icon">move<wbr>Pivot</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="NormalForm.html#reduce" class="tsd-kind-icon">reduce</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="NormalForm.html#diagonalizePivot" class="tsd-kind-icon">diagonalize<wbr>Pivot</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="NormalForm.html#improvePivot" class="tsd-kind-icon">improve<wbr>Pivot</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="NormalForm.html#movePivot" class="tsd-kind-icon">move<wbr>Pivot</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="NormalForm.html#reduce" class="tsd-kind-icon">reduce</a></li>
 							</ul>
 						</section>
 					</div>
@@ -113,22 +120,19 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Normal<wbr>Form<span class="tsd-signature-symbol">(</span>mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, recordSteps<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="NormalForm.html" class="tsd-signature-type" data-tsd-kind="Class">NormalForm</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Normal<wbr>Form<span class="tsd-signature-symbol">(</span>mat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="NormalForm.html" class="tsd-signature-type" data-tsd-kind="Class">NormalForm</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L18">normal-form.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L58">normal-form.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>mat: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-								<li>
-									<h5>recordSteps: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="NormalForm.html" class="tsd-signature-type" data-tsd-kind="Class">NormalForm</a></h4>
@@ -140,13 +144,26 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="A" class="tsd-anchor"></a>
-					<h3>A</h3>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> A</h3>
 					<div class="tsd-signature tsd-kind-icon">A<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L10">normal-form.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L23">normal-form.ts:23</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A (non-zero) integer matrix to be reduced to normal form. The matrix
+								<code>A</code> can be of any size, as long as it is a well-formed non-empty matrix.
+							For example,</p>
+							<pre><code class="language-ts"><span style="color: #000000">[[</span><span style="color: #098658">1</span><span style="color: #000000">,</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">3</span><span style="color: #000000">],[</span><span style="color: #098658">2</span><span style="color: #000000">,-</span><span style="color: #098658">5</span><span style="color: #000000">,</span><span style="color: #098658">0</span><span style="color: #000000">]]</span>
+</code></pre>
+							<p>is a valid input matrix of size <code>2×3</code>; whereas,</p>
+							<pre><code class="language-ts"><span style="color: #000000">[[</span><span style="color: #098658">1</span><span style="color: #000000">,</span><span style="color: #098658">2</span><span style="color: #000000">,</span><span style="color: #098658">3</span><span style="color: #000000">],[</span><span style="color: #098658">2</span><span style="color: #000000">,-</span><span style="color: #098658">5</span><span style="color: #000000">]]</span>
+</code></pre>
+							<p>is considered a mal-formed input matrix.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="D" class="tsd-anchor"></a>
@@ -154,9 +171,16 @@
 					<div class="tsd-signature tsd-kind-icon">D<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L16">normal-form.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L56">normal-form.ts:56</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Reduced diagonal matrix. Note that <code>D</code> may not be a square matrix.</p>
+							<pre><code class="language-text">D = (inv Q)AP
+</code></pre>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="P" class="tsd-anchor"></a>
@@ -164,9 +188,14 @@
 					<div class="tsd-signature tsd-kind-icon">P<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L13">normal-form.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L38">normal-form.ts:38</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Basechange matrix of dimension <code>m</code>.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="Q" class="tsd-anchor"></a>
@@ -174,9 +203,14 @@
 					<div class="tsd-signature tsd-kind-icon">Q<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L14">normal-form.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L43">normal-form.ts:43</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Basechange matrix of dimension <code>n</code>.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="diag" class="tsd-anchor"></a>
@@ -184,44 +218,60 @@
 					<div class="tsd-signature tsd-kind-icon">diag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L15">normal-form.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L48">normal-form.ts:48</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Non-zero diagonal elements <code>d_0, d_2,..., d_k</code> after the reduction such that
+							<code>d_0 | d_2 |...| d_k</code>.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="m" class="tsd-anchor"></a>
-					<h3>m</h3>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> m</h3>
 					<div class="tsd-signature tsd-kind-icon">m<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L12">normal-form.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L33">normal-form.ts:33</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Number of columns of <code>A</code></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="n" class="tsd-anchor"></a>
-					<h3>n</h3>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> n</h3>
 					<div class="tsd-signature tsd-kind-icon">n<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L11">normal-form.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L28">normal-form.ts:28</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Number of rows of <code>A</code></p>
+						</div>
+					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="diagonalizePivot" class="tsd-anchor"></a>
-					<h3>diagonalize<wbr>Pivot</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> diagonalize<wbr>Pivot</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
 						<li class="tsd-signature tsd-kind-icon">diagonalize<wbr>Pivot<span class="tsd-signature-symbol">(</span>offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L109">normal-form.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L149">normal-form.ts:149</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -234,17 +284,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="improvePivot" class="tsd-anchor"></a>
-					<h3>improve<wbr>Pivot</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> improve<wbr>Pivot</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
 						<li class="tsd-signature tsd-kind-icon">improve<wbr>Pivot<span class="tsd-signature-symbol">(</span>offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L55">normal-form.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L95">normal-form.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -257,17 +307,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="movePivot" class="tsd-anchor"></a>
-					<h3>move<wbr>Pivot</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> move<wbr>Pivot</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
 						<li class="tsd-signature tsd-kind-icon">move<wbr>Pivot<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L94">normal-form.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L134">normal-form.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -283,17 +333,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="reduce" class="tsd-anchor"></a>
-					<h3>reduce</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> reduce</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
 						<li class="tsd-signature tsd-kind-icon">reduce<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/a52ebdd/src/normal-form.ts#L42">normal-form.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/61d8003/src/normal-form.ts#L82">normal-form.ts:82</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -341,16 +391,16 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="NormalForm.html#n" class="tsd-kind-icon">n</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="NormalForm.html#diagonalizePivot" class="tsd-kind-icon">diagonalize<wbr>Pivot</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="NormalForm.html#improvePivot" class="tsd-kind-icon">improve<wbr>Pivot</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="NormalForm.html#movePivot" class="tsd-kind-icon">move<wbr>Pivot</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="NormalForm.html#reduce" class="tsd-kind-icon">reduce</a>
 							</li>
 						</ul>
@@ -408,10 +458,12 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 		</div>
 	</div>
