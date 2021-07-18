@@ -139,36 +139,38 @@ class NormalForm {
         while(true) {
             [i,j]  = minimalEntry(this.D, offset);
             
+            this.addStep({ name: "pivot", pivot: [i,j], offset: offset });
             // Position of the element non-divisible by pivot or false
             let position = isReducible([i,j], this.D, offset);
             if(!position)
                 break;
             
             let [s,t] = position;
-
+            this.addStep({ name: "antiPivot", antiPivot: [s,t], offset: offset });
+ 
             if(j === t) {
                 let q = - Math.floor(this.D[s][j] / this.D[i][j]);
                 replaceRow(s, i, q, this.D, { offset: offset });
-                this.addStep({ name: "replaceRow", args: [s, i, q], pivot: [i,j], antiPivot: [s,t], offset: offset });
+                this.addStep({ name: "replaceRow", args: [s, i, q], offset: offset });
             }
             else if(i === s) {
                 let q = - Math.floor(this.D[i][t] / this.D[i][j]);
                 replaceCol(t, j, q, this.D, { offset: offset});
-                this.addStep({ name: "replaceCol", args: [t, j, q], pivot: [i,j], antiPivot: [s,t], offset: offset });
+                this.addStep({ name: "replaceCol", args: [t, j, q], offset: offset });
             }
             else {
                 if(this.D[s][j] !== 0) {
                     let q = - Math.floor(this.D[s][j] / this.D[i][j]);
                     replaceRow(s, i, q, this.D, { offset: offset });
-                    this.addStep({ name: "replaceRow", args: [s, i, q], pivot: [i,j], antiPivot: [s,t], offset: offset });
+                    this.addStep({ name: "replaceRow", args: [s, i, q], offset: offset });
                 }
                 
                 replaceRow(i, s, 1, this.D, { offset: offset });
-                this.addStep({ name: "replaceRow", args: [i, s, 1], pivot: [i,j], antiPivot: [s,t], offset: offset });
+                this.addStep({ name: "replaceRow", args: [i, s, 1], offset: offset });
                 
                 let q = - Math.floor(this.D[i][t] / this.D[i][j]);
                 replaceCol(t, j, q, this.D, { offset: offset});
-                this.addStep({ name: "replaceCol", args: [t, j, q], pivot: [i,j], antiPivot: [s,t], offset: offset });
+                this.addStep({ name: "replaceCol", args: [t, j, q], offset: offset });
             }
         }
         return [i,j];
@@ -178,15 +180,15 @@ class NormalForm {
         
         if(i !== offset) {
             exchangeRows(offset, i, this.D);
-            this.addStep({ name: "exchangeRows", args: [offset, i], pivot: [i,j], antiPivot: [], offset: offset });
+            this.addStep({ name: "exchangeRows", args: [offset, i], offset: offset });
         }
         if(j !== offset) {
             exchangeCols(offset, j, this.D);
-            this.addStep({ name: "exchangeCols", args: [offset, j], pivot: [i,j], antiPivot: [], offset: offset });
+            this.addStep({ name: "exchangeCols", args: [offset, j], offset: offset });
         }
         if(this.D[offset][offset] < 0 ) {
             multiplyRow(offset, -1, this.D);
-            this.addStep({ name: "multiplyRow", args: [offset, -1], pivot: [i,j], antiPivot: [], offset: offset });
+            this.addStep({ name: "multiplyRow", args: [offset, -1], offset: offset });
         }
     }
 
@@ -197,7 +199,7 @@ class NormalForm {
                 continue;
             let q = - Math.floor(this.D[i][offset] / this.D[offset][offset]);
             replaceRow(i, offset, q, this.D, { offset: offset });
-            this.addStep({ name: "replaceRow", args: [i, offset], pivot: [offset, offset], antiPivot: [], offset: offset })
+            this.addStep({ name: "replaceRow", args: [i, offset], offset: offset })
         }
     
         // Make offset row zero
@@ -206,7 +208,7 @@ class NormalForm {
                 continue;
             let q = - Math.floor(this.D[offset][j] / this.D[offset][offset]);
             replaceCol(j,offset, q, this.D, { offset: offset});
-            this.addStep({ name: "replaceCol", args: [j, offset], pivot: [offset, offset], antiPivot: [], offset: offset })
+            this.addStep({ name: "replaceCol", args: [j, offset], offset: offset })
         }
     }
 
