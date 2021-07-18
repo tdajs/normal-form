@@ -127,8 +127,10 @@ class NormalForm {
             return;
         
         let [i,j] = this.improvePivot(startOffset);
+        this.addStep({ name: "improvedPivot", pivot: [i,j], antiPivot: [], offset: startOffset });
         this.movePivot([i,j], startOffset);        
         this.diagonalizePivot(startOffset);
+        this.addStep({ name: "offset", offset: startOffset });
         this.diag.push(this.D[startOffset][startOffset]);
         this.reduce(startOffset + 1, endOffset);
     }
@@ -139,14 +141,13 @@ class NormalForm {
         while(true) {
             [i,j]  = minimalEntry(this.D, offset);
             
-            this.addStep({ name: "pivot", pivot: [i,j], offset: offset });
             // Position of the element non-divisible by pivot or false
             let position = isReducible([i,j], this.D, offset);
             if(!position)
                 break;
             
             let [s,t] = position;
-            this.addStep({ name: "antiPivot", antiPivot: [s,t], offset: offset });
+            this.addStep({ name: "improvePivot", pivot: [i,j], antiPivot: [s,t], offset: offset });
  
             if(j === t) {
                 let q = - Math.floor(this.D[s][j] / this.D[i][j]);
