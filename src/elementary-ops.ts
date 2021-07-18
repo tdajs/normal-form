@@ -29,7 +29,7 @@ export interface Options {
 
 const DefaultOptions: Options = {
     offset: 0,
-    copy: true,
+    copy: false,
     changeBase: true
 }
 
