@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/sushovan4/simplicial-complex#readme",
   "devDependencies": {
-    "@types/numjs": "^0.16.0",
     "browserify": "^17.0.0",
     "browserify-shim": "^3.8.14",
     "typedoc": "^0.21.4",
