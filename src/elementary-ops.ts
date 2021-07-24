@@ -78,7 +78,7 @@ export function replaceRow(i: number, k: number, q: number, mat: number[][], opt
     const result = opts.copy ? copyMat(mat) : mat;
     
     for(let j = opts.offset || 0; j < result[0].length; j++)
-    result[i][j] += q * result[k][j];
+        result[i][j] += q * result[k][j];
     
     const baseChangeMat: number[][] = opts.changeBase ? replaceRow(i, k, - q, idMat(result.length), {
         copy: false, 
@@ -105,7 +105,7 @@ export function multiplyRow(i: number, q: number, mat: number[][], options?: Opt
     const result = opts.copy ? copyMat(mat) : mat;
     result[i] = result[i].map(val => q * val );
     
-    const baseChangeMat: number[][] = opts.changeBase ? multiplyRow(i, - q, idMat(result.length), {
+    const baseChangeMat: number[][] = opts.changeBase ? multiplyRow(i, q, idMat(result.length), {
         copy: false,
         changeBase: false
     })[0] : [];

@@ -1,4 +1,4 @@
-import { copyMat, idMat, multiplyMat } from './utils';
+import { copyMat, equalMatrix, idMat, multiplyMat } from './utils';
 import { exchangeCols, exchangeRows, replaceCol, replaceRow, multiplyRow, multiplyCol } from './elementary-ops';
 import { findAntiPivot, isZero, findPivot } from './utils' 
 
@@ -96,6 +96,10 @@ class NormalForm {
      * Optional arguments
      */
     opts: NFOpts;
+    /**
+     * 
+     */
+    Qinv: number[][];
 
     constructor(mat: number[][], options?: NFOpts)
     {
@@ -117,27 +121,32 @@ class NormalForm {
         this.m = this.A[0].length;
 
         this.D = this.opts.copy ? copyMat(mat) : mat;
-        [this.P, this.Q] = this.opts.changeBases ? [idMat(this.m), idMat(this.n)] : [[[]],[[]]];
+        [this.P, this.Q, this.Qinv] = this.opts.changeBases ? 
+            [idMat(this.m), idMat(this.n), idMat(this.n)] : [[], [], []];
+        
         this.diag = new Array<number>();
         this.reduce(0, Math.min(this.m, this.n));
+        // Check sum
+        if(! equalMatrix( multiplyMat(this.A, this.P), multiplyMat(this.Q, this.D) ) )
+            throw new Error('Reduction failed.');
     }
 
     private reduce(startOffset: number, endOffset: number) {
         if( startOffset >= endOffset || isZero(this.D, startOffset) )
             return;
-        
-        let [i,j] = this.improvePivot(startOffset);
-        this.addStep({ name: "improvedPivot", pivot: [i,j], antiPivot: [], offset: startOffset });
-        this.movePivot([i,j], startOffset);        
-        this.diagonalizePivot(startOffset);
-        this.addStep({ name: "offset", offset: startOffset });
-        this.diag.push(this.D[startOffset][startOffset]);
-        this.reduce(startOffset + 1, endOffset);
-    }
 
+            let [i,j] = this.improvePivot(startOffset);
+            this.addStep({ name: "improvedPivot", pivot: [i,j], antiPivot: [], offset: startOffset });
+            this.movePivot([i,j], startOffset);        
+            this.diagonalizePivot(startOffset);
+            this.addStep({ name: "offset", offset: startOffset });
+            this.diag.push(this.D[startOffset][startOffset]);
+            this.reduce(startOffset + 1, endOffset);
+        }
+        
     private improvePivot(offset: number) {
         let i,j: number; // Pivot position
-
+        
         while(true) {
             [i,j]  = findPivot(this.D, offset);
             
@@ -152,7 +161,10 @@ class NormalForm {
             if(j === t) {
                 let q = - Math.floor(this.D[s][j] / this.D[i][j]);
                 let Q = replaceRow(s, i, q, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
-                if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
+                if(this.opts.changeBases) {
+                    this.Q = multiplyMat(this.Q, Q);
+                    this.Qinv = multiplyMat(replaceRow(s, i, q, idMat(this.n), { offset: offset, changeBase: this.opts.changeBases })[0], this.Qinv);
+                }
                 this.addStep({ name: "replaceRow", args: [s, i, q], offset: offset });
             }
             else if(i === s) {
@@ -165,12 +177,18 @@ class NormalForm {
                 if(this.D[s][j] !== 0) {
                     let q = - Math.floor(this.D[s][j] / this.D[i][j]);
                     let Q = replaceRow(s, i, q, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
-                    if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
+                    if(this.opts.changeBases) {
+                        this.Q = multiplyMat(this.Q, Q);
+                        this.Qinv = multiplyMat(replaceRow(s, i, q, idMat(this.n), { offset: offset, changeBase: this.opts.changeBases })[0], this.Qinv);
+                    }
                     this.addStep({ name: "replaceRow", args: [s, i, q], offset: offset });
                 }
-                
+
                 let Q = replaceRow(i, s, 1, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
-                if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
+                if(this.opts.changeBases) {
+                    this.Q = multiplyMat(this.Q, Q);
+                    this.Qinv = multiplyMat(replaceRow(i, s, 1, idMat(this.n), { offset: offset, changeBase: this.opts.changeBases })[0], this.Qinv);
+                }
                 this.addStep({ name: "replaceRow", args: [i, s, 1], offset: offset });
                 
                 let q = - Math.floor(this.D[i][t] / this.D[i][j]);
@@ -182,11 +200,13 @@ class NormalForm {
         return [i,j];
     }
 
-    private movePivot([i,j]: [number,number], offset: number) {
-        
+    private movePivot([i,j]: [number,number], offset: number) { 
         if(i !== offset) {
             let Q = exchangeRows(offset, i, this.D, { changeBase: this.opts.changeBases })[1];
-            if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
+            if(this.opts.changeBases) {
+                this.Q = multiplyMat(this.Q, Q);
+                this.Qinv = multiplyMat(exchangeRows(offset, i, idMat(this.n), { offset: offset, changeBase: this.opts.changeBases })[0], this.Qinv);
+            }
             this.addStep({ name: "exchangeRows", args: [offset, i], offset: offset });
         }
         if(j !== offset) {
@@ -196,7 +216,11 @@ class NormalForm {
         }
         if(this.D[offset][offset] < 0 ) {
             let Q = multiplyRow(offset, -1, this.D, { changeBase: this.opts.changeBases })[1];
-            if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
+            
+            if(this.opts.changeBases) {
+                this.Q = multiplyMat(this.Q, Q);
+                this.Qinv = multiplyMat(multiplyRow(offset, -1, idMat(this.n), { offset: offset, changeBase: this.opts.changeBases })[0], this.Qinv);
+            }
             this.addStep({ name: "multiplyRow", args: [offset, -1], offset: offset });
         }
     }
@@ -208,7 +232,10 @@ class NormalForm {
                 continue;
             let q = - Math.floor(this.D[i][offset] / this.D[offset][offset]);
             let Q = replaceRow(i, offset, q, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
-            if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
+            if(this.opts.changeBases) {
+                this.Q = multiplyMat(this.Q, Q);
+                this .Qinv = multiplyMat(replaceRow(i, offset, q, idMat(this.n), { offset: offset, changeBase: this.opts.changeBases })[0], this.Qinv);
+            }
             this.addStep({ name: "replaceRow", args: [i, offset], offset: offset })
         }
     

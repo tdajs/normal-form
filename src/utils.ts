@@ -119,8 +119,11 @@ export function multiplyMat(A: number[][], B: number[][]) {
     for(let i = 0; i < A.length; i++)
         for(let j = 0; j < B[0].length; j++) {
             let sum = 0;  
-            for(let k = 0; k < A[0].length; k++)
+            for(let k = 0; k < A[0].length; k++) {
                 sum += A[i][k] * B[k][j];
+                if(!Number.isSafeInteger(sum))    
+                    throw new Error('Integers too big.');
+            }
             prod[i][j] = sum;    
         }
     return prod;    
@@ -141,7 +144,6 @@ export function equalMatrix(A: number[][], B: number[][]) {
     for(let i = 0; i < A.length; i++)
         for(let j = 0; j < A[0].length; j++)
             if(A[i][j] !== B[i][j]) {
-                console.log(A[i][j] + ':' + B[i][j]);
                 return false;
             }
     return true;                
@@ -150,8 +152,10 @@ export function equalMatrix(A: number[][], B: number[][]) {
 export function isZero(mat: number[][], offset: number = 0) {
     for(let i = offset; i <  mat.length; i++)
         for(let j = offset; j < mat[0].length; j++) {
+            if(!Number.isSafeInteger(mat[i][j]))
+                throw new Error('Integers too big.');
             if(mat[i][j] !== 0)
-            return false;
+                return false;
     }
     return true;    
 }
