@@ -1,3 +1,5 @@
+import { replaceCol, replaceRow } from "./elementary-ops"
+
 /**
  * Generates a string that MathJax/KaTex can use to print
  * a matrix.
@@ -154,7 +156,7 @@ export function isZero(mat: number[][], offset: number = 0) {
     return true;    
 }
 
-export function isReducible([s,t]: [number,number], mat: number[][], offset: number) {
+export function findAntiPivot([s,t]: [number,number], mat: number[][], offset: number) {
     let alpha = Math.abs(mat[s][t]);
     for(let i = offset; i < mat.length; i++)
         for(let j = offset; j < mat[0].length; j++) {
@@ -162,10 +164,10 @@ export function isReducible([s,t]: [number,number], mat: number[][], offset: num
                 return [i,j];
             }
         }
-    return false;
+    return [];
 }
 
-export function minimalEntry(mat: number[][], offset: number) {
+export function findPivot(mat: number[][], offset: number) {
     if(mat.length === offset)
         throw new Error('Matrix must be non-empty.');
 
@@ -192,4 +194,33 @@ export function minimalEntry(mat: number[][], offset: number) {
         throw new Error('Matrix can not have all zeros.');
         
     return pos;
+}
+
+export function improvePivot(pivot: number[], antiPivot: number[], mat: number[][], offset = 0) {
+    const [i,j] = pivot;
+    mat = copyMat(mat);
+
+    if(antiPivot.length === 0)
+        return mat;
+
+    const [s,t] = antiPivot;
+ 
+    if(j === t) {
+        let q = - Math.floor(mat[s][j] / mat[i][j]);
+        replaceRow(s, i, q, mat, { offset: offset });
+    }
+    else if(i === s) {
+        let q = - Math.floor(mat[i][t] / mat[i][j]);
+        replaceCol(t, j, q, mat, { offset: offset});
+    }
+    else {
+        if(mat[s][j] !== 0) {
+            let q = - Math.floor(mat[s][j] / mat[i][j]);
+            replaceRow(s, i, q, mat, { offset: offset });
+        }        
+        replaceRow(i, s, 1, mat, { offset: offset });
+        let q = - Math.floor(mat[i][t] / mat[i][j]);
+        replaceCol(t, j, q, mat, { offset: offset});
+    }
+    return mat;
 }

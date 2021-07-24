@@ -1,6 +1,6 @@
 {
   "name": "@tdajs/normal-form",
-  "version": "1.1.1",
+  "version": "1.1.8",
   "description": "Smith Normal Form and utility",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
     "watch": "watch 'npm run build' ./src",
     "bundle": "npm run build && browserify ./dist/index.js --s SC -o ./dist/min.js",
     "doc": "typedoc src/index.ts",
-    "publish": "npm publish --access=public"
+    "publish": "npm run build && npm publish --access=public"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
-import { copyMat, idMat } from './utils';
+import { copyMat, idMat, multiplyMat } from './utils';
 import { exchangeCols, exchangeRows, replaceCol, replaceRow, multiplyRow, multiplyCol } from './elementary-ops';
-import { isReducible, isZero, minimalEntry } from './utils' 
+import { findAntiPivot, isZero, findPivot } from './utils' 
 
 /**
  * Optional arguments
@@ -117,7 +117,7 @@ class NormalForm {
         this.m = this.A[0].length;
 
         this.D = this.opts.copy ? copyMat(mat) : mat;
-        [this.P, this.Q] = this.opts.changeBases ? [idMat(this.n), idMat(this.m)] : [[],[]];
+        [this.P, this.Q] = this.opts.changeBases ? [idMat(this.m), idMat(this.n)] : [[[]],[[]]];
         this.diag = new Array<number>();
         this.reduce(0, Math.min(this.m, this.n));
     }
@@ -139,38 +139,43 @@ class NormalForm {
         let i,j: number; // Pivot position
 
         while(true) {
-            [i,j]  = minimalEntry(this.D, offset);
+            [i,j]  = findPivot(this.D, offset);
             
             // Position of the element non-divisible by pivot or false
-            let position = isReducible([i,j], this.D, offset);
-            if(!position)
+            let antiPivot = findAntiPivot([i,j], this.D, offset);
+            if(antiPivot.length === 0)
                 break;
             
-            let [s,t] = position;
+            let [s,t] = antiPivot;
             this.addStep({ name: "improvePivot", pivot: [i,j], antiPivot: [s,t], offset: offset });
  
             if(j === t) {
                 let q = - Math.floor(this.D[s][j] / this.D[i][j]);
-                replaceRow(s, i, q, this.D, { offset: offset });
+                let Q = replaceRow(s, i, q, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
+                if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
                 this.addStep({ name: "replaceRow", args: [s, i, q], offset: offset });
             }
             else if(i === s) {
                 let q = - Math.floor(this.D[i][t] / this.D[i][j]);
-                replaceCol(t, j, q, this.D, { offset: offset});
+                let P = replaceCol(t, j, q, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
+                if(this.opts.changeBases) this.P = multiplyMat(this.P, P);
                 this.addStep({ name: "replaceCol", args: [t, j, q], offset: offset });
             }
             else {
                 if(this.D[s][j] !== 0) {
                     let q = - Math.floor(this.D[s][j] / this.D[i][j]);
-                    replaceRow(s, i, q, this.D, { offset: offset });
+                    let Q = replaceRow(s, i, q, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
+                    if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
                     this.addStep({ name: "replaceRow", args: [s, i, q], offset: offset });
                 }
                 
-                replaceRow(i, s, 1, this.D, { offset: offset });
+                let Q = replaceRow(i, s, 1, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
+                if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
                 this.addStep({ name: "replaceRow", args: [i, s, 1], offset: offset });
                 
                 let q = - Math.floor(this.D[i][t] / this.D[i][j]);
-                replaceCol(t, j, q, this.D, { offset: offset});
+                let P = replaceCol(t, j, q, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
+                if(this.opts.changeBases) this.P = multiplyMat(this.P, P);
                 this.addStep({ name: "replaceCol", args: [t, j, q], offset: offset });
             }
         }
@@ -180,15 +185,18 @@ class NormalForm {
     private movePivot([i,j]: [number,number], offset: number) {
         
         if(i !== offset) {
-            exchangeRows(offset, i, this.D);
+            let Q = exchangeRows(offset, i, this.D, { changeBase: this.opts.changeBases })[1];
+            if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
             this.addStep({ name: "exchangeRows", args: [offset, i], offset: offset });
         }
         if(j !== offset) {
-            exchangeCols(offset, j, this.D);
+            let P = exchangeCols(offset, j, this.D, { changeBase: this.opts.changeBases })[1];
+            if(this.opts.changeBases) this.P = multiplyMat(this.P, P);
             this.addStep({ name: "exchangeCols", args: [offset, j], offset: offset });
         }
         if(this.D[offset][offset] < 0 ) {
-            multiplyRow(offset, -1, this.D);
+            let Q = multiplyRow(offset, -1, this.D, { changeBase: this.opts.changeBases })[1];
+            if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
             this.addStep({ name: "multiplyRow", args: [offset, -1], offset: offset });
         }
     }
@@ -199,7 +207,8 @@ class NormalForm {
             if(this.D[i][offset] === 0)
                 continue;
             let q = - Math.floor(this.D[i][offset] / this.D[offset][offset]);
-            replaceRow(i, offset, q, this.D, { offset: offset });
+            let Q = replaceRow(i, offset, q, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
+            if(this.opts.changeBases) this.Q = multiplyMat(this.Q, Q);
             this.addStep({ name: "replaceRow", args: [i, offset], offset: offset })
         }
     
@@ -208,7 +217,8 @@ class NormalForm {
             if(this.D[offset][j] === 0)
                 continue;
             let q = - Math.floor(this.D[offset][j] / this.D[offset][offset]);
-            replaceCol(j,offset, q, this.D, { offset: offset});
+            let P = replaceCol(j,offset, q, this.D, { offset: offset, changeBase: this.opts.changeBases })[1];
+            if(this.opts.changeBases) this.P = multiplyMat(this.P, P);
             this.addStep({ name: "replaceCol", args: [j, offset], offset: offset })
         }
     }
