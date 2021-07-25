@@ -12,7 +12,8 @@ import { copyMat , idMat } from "./utils";
  */
 export interface Options {
     /**
-     * Offset of the matrix used. Default is `0`.
+     * Offset of the matrix used. Default is `0`. One can make use of
+     * it to speed up the operations substantially.
      */
     offset?: number,
     /**
@@ -22,15 +23,26 @@ export interface Options {
      */
     copy?: boolean,
     /**
-     * if `true`, the basechange matrix is returned. Default is `true`. 
+     * if `true`, the corresponding elemetary matrix `E` and the inverse, `Einv`, thereof 
+     * are returned. Default is `true`. For row operation on a matrix `A`, the resulting 
+     * matrix is equal to `EA`. For column operation on a matrix `A`, the resulting 
+     * matrix is equal to `AE`. 
      */
     changeBase?: boolean
 }
-
+/**
+ * The default options used for the elementary operations.
+ */
 const DefaultOptions: Options = {
     offset: 0,
     copy: false,
     changeBase: true
+}
+
+const ElementaryOptions: Options = {
+    offset: 0,
+    copy: false,
+    changeBase: false
 }
 
 /**
@@ -41,23 +53,20 @@ const DefaultOptions: Options = {
  * @param k index of the row to be exchanged
  * @param mat matrix to perform the operation on
  * @param options optional arguments; see [[Options]] for more details
- * @returns array of two matrices. The first matrix is the reduced matrix, and the second
- * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
+ * @returns array of three matrices. The first matrix is the resultant matrix and the last two are
+ * the corresponding elementary matrix and its inverse (if `changeBase: true` is set in the `options`).
  */
 export function exchangeRows(i: number, k: number, mat: number[][], options?: Options): 
-        [result: number[][], baseChangeMat: number[][]] {
+        [result: number[][], E: number[][], Einv: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     
     let tmp = result[i];
     result[i] = result[k];
     result[k] = tmp;
-    
-    const baseChangeMat: number[][] = opts.changeBase ? exchangeRows(i, k, idMat(result.length), {
-        copy: false,
-        changeBase: false
-    })[0] : [];
-    return [result, baseChangeMat];
+
+    const E = opts.changeBase ? exchangeRows(i, k, idMat(result.length), ElementaryOptions)[0] : [];
+    return [result, E, E];
 }
 
 /**
@@ -69,47 +78,44 @@ export function exchangeRows(i: number, k: number, mat: number[][], options?: Op
  * @param q (integer) mutiplier
  * @param mat matrix to perform the operation on
  * @param options optional arguments; see [[Options]] for more details
- * @returns array of two matrices. The first matrix is the reduced matrix, and the second
- * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
+ * @returns array of three matrices. The first matrix is the resultant matrix and the last two are
+ * the corresponding elementary matrix and its inverse (if `changeBase: true` is set in the `options`).
  */
 export function replaceRow(i: number, k: number, q: number, mat: number[][], options?: Options):
-        [result: number[][], baseChangeMat: number[][]] {
+        [result: number[][], E: number[][], Einv: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     
     for(let j = opts.offset || 0; j < result[0].length; j++)
         result[i][j] += q * result[k][j];
     
-    const baseChangeMat: number[][] = opts.changeBase ? replaceRow(i, k, - q, idMat(result.length), {
-        copy: false, 
-        changeBase: false
-    })[0] : [];
-    return [result, baseChangeMat];
+    let E: number[][] = [], Einv: number[][] = [];
+    if(opts.changeBase) {
+        E = replaceRow(i, k, q, idMat(result.length), ElementaryOptions)[0];
+        Einv = replaceRow(i, k, -q, idMat(result.length), ElementaryOptions)[0];
+    }
+    return [result, E, Einv];
 }
-
 
 /**
  * Performs the elementary row operation to
  * multiply the entries of the i-th row by q of a matrix.
  * @category Elementary Operations
  * @param i index of the row to be multiplied
- * @param q (integer) multiplier
+ * @param q (integer) multiplier (`q=+1, -1`)
  * @param mat matrix to perform the operation on
  * @param options optional arguments; see [[Options]] for more details
- * @returns array of two matrices. The first matrix is the reduced matrix, and the second
- * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
+ * @returns array of three matrices. The first matrix is the resultant matrix and the last two are
+ * the corresponding elementary matrix and its inverse (if `changeBase: true` is set in the `options`).
  */
 export function multiplyRow(i: number, q: number, mat: number[][], options?: Options):
-        [result: number[][], baseChangeMat: number[][]] {
+        [result: number[][], E: number[][], Einv: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     result[i] = result[i].map(val => q * val );
     
-    const baseChangeMat: number[][] = opts.changeBase ? multiplyRow(i, q, idMat(result.length), {
-        copy: false,
-        changeBase: false
-    })[0] : [];
-    return [result, baseChangeMat];
+    const E = opts.changeBase ? multiplyRow(i, q, idMat(result.length), ElementaryOptions)[0] : [];
+    return [result, E, E];
 }
 
 /**
@@ -120,11 +126,11 @@ export function multiplyRow(i: number, q: number, mat: number[][], options?: Opt
  * @param k index of the column to be exchanged
  * @param mat matrix to perform the operation on
  * @param options optional arguments; see [[Options]] for more details
- * @returns array of two matrices. The first matrix is the reduced matrix, and the second
- * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
+ * @returns array of three matrices. The first matrix is the resultant matrix and the last two are
+ * the corresponding elementary matrix and its inverse (if `changeBase: true` is set in the `options`).
  */
 export function exchangeCols(j: number, k: number, mat: number[][], options?: Options):
-        [result: number[][], baseChangeMat: number[][]] {
+        [result: number[][], E: number[][], Einv: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     
@@ -134,11 +140,8 @@ export function exchangeCols(j: number, k: number, mat: number[][], options?: Op
         result[i][k] = tmp;
     }
     
-    const baseChangeMat: number[][] = opts.changeBase ? exchangeCols(j, k, idMat(result[0].length), {
-        copy: false,
-        changeBase: false
-    })[0] : [];
-    return [result, baseChangeMat];
+    const E = opts.changeBase ? exchangeCols(j, k, idMat(result[0].length), ElementaryOptions)[0] : [];
+    return [result, E, E];
 }
 
 /**
@@ -150,22 +153,23 @@ export function exchangeCols(j: number, k: number, mat: number[][], options?: Op
  * @param q (integer) mutiplier
  * @param mat matrix to perform the operation on
  * @param options optional arguments; see [[Options]] for more details
- * @returns array of two matrices. The first matrix is the reduced matrix, and the second
- * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
+ * @returns array of three matrices. The first matrix is the resultant matrix and the last two are
+ * the corresponding elementary matrix and its inverse (if `changeBase: true` is set in the `options`).
  */
 export function replaceCol(j: number, k: number, q: number, mat: number[][], options?: Options):
-        [result: number[][], baseChangeMat: number[][]] {
+        [result: number[][], E: number[][], Einv: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     
     for(let i = opts.offset || 0; i < result.length; i++)
     result[i][j] += q * result[i][k];
     
-    const baseChangeMat: number[][] = opts.changeBase ? replaceCol(j, k, q, idMat(result[0].length), {
-        copy: false,
-        changeBase: false
-    })[0] : [];
-    return [result, baseChangeMat];
+    let E: number[][] = [], Einv: number[][] = [];
+    if(opts.changeBase) {
+        E = replaceCol(j, k, q, idMat(result[0].length), ElementaryOptions)[0];
+        Einv = replaceCol(j, k, - q, idMat(result[0].length), ElementaryOptions)[0];
+    }
+    return [result, E, Einv];
 }
 
 /**
@@ -176,20 +180,17 @@ export function replaceCol(j: number, k: number, q: number, mat: number[][], opt
  * @param q (integer) multiplier
  * @param mat matrix to perform the operation on
  * @param options optional arguments; see [[Options]] for more details
- * @returns array of two matrices. The first matrix is the reduced matrix, and the second
- * matrix is the basechange matrix (if `changeBase: true` is set in the `options`)
+ * @returns array of three matrices. The first matrix is the resultant matrix and the last two are
+ * the corresponding elementary matrix and its inverse (if `changeBase: true` is set in the `options`).
  */
 export function multiplyCol(j: number, q: number, mat: number[][], options?: Options):
-        [result: number[][], baseChangeMat: number[][]] {
+        [result: number[][], E: number[][], Einv: number[][]] {
     const opts = {...DefaultOptions, ...options};
     const result = opts.copy ? copyMat(mat) : mat;
     
     for(let i = 0; i < result.length; i++)
     result[i][j] *= q;
     
-    const baseChangeMat: number[][] = opts.changeBase ? multiplyCol(j, q, idMat(result[0].length), {
-        copy: false,
-        changeBase: false
-    })[0] : [];
-    return [result, baseChangeMat]; 
+    const E = opts.changeBase ? multiplyCol(j, q, idMat(result[0].length), ElementaryOptions)[0] : [];
+    return [result, E, E];
 }

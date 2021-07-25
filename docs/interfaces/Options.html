@@ -104,12 +104,15 @@
 					<div class="tsd-signature tsd-kind-icon">change<wbr>Base<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/d1a8384/src/elementary-ops.ts#L27">elementary-ops.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/2529980/src/elementary-ops.ts#L31">elementary-ops.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>if <code>true</code>, the basechange matrix is returned. Default is <code>true</code>.</p>
+							<p>if <code>true</code>, the corresponding elemetary matrix <code>E</code> and the inverse, <code>Einv</code>, thereof
+								are returned. Default is <code>true</code>. For row operation on a matrix <code>A</code>, the resulting
+								matrix is equal to <code>EA</code>. For column operation on a matrix <code>A</code>, the resulting
+							matrix is equal to <code>AE</code>.</p>
 						</div>
 					</div>
 				</section>
@@ -119,7 +122,7 @@
 					<div class="tsd-signature tsd-kind-icon">copy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/d1a8384/src/elementary-ops.ts#L23">elementary-ops.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/2529980/src/elementary-ops.ts#L24">elementary-ops.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -136,12 +139,13 @@
 					<div class="tsd-signature tsd-kind-icon">offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/d1a8384/src/elementary-ops.ts#L17">elementary-ops.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/tdajs/normal-form/blob/2529980/src/elementary-ops.ts#L18">elementary-ops.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Offset of the matrix used. Default is <code>0</code>.</p>
+							<p>Offset of the matrix used. Default is <code>0</code>. One can make use of
+							it to speed up the operations substantially.</p>
 						</div>
 					</div>
 				</section>
@@ -210,6 +214,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../modules.html#multiplyCol" class="tsd-kind-icon">multiply<wbr>Col</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#multiplyMat" class="tsd-kind-icon">multiply<wbr>Mat</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../modules.html#multiplyRow" class="tsd-kind-icon">multiply<wbr>Row</a>
