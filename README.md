@@ -2,6 +2,7 @@
 Reduction to Smith Normal Form in JavaScript.
 
 ## Documentation
+tdajs.github.io/normal-form/
 
 ## Installation
 
