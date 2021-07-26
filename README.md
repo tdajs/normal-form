@@ -15,3 +15,4 @@ npm install @tdajs/normal-form
 ## Contributing
 
 ## License
+MIT © [Sushovan Majhi](https://smajhi.com)
