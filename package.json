@@ -1,6 +1,6 @@
 {
   "name": "@tdajs/normal-form",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Smith Normal Form and utility",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,9 +19,9 @@
   "author": "Sushovan Majhi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sushovan4/simplicial-complex/issues"
+    "url": "https://github.com/tdajs/normal-form/issues"
   },
-  "homepage": "https://github.com/sushovan4/simplicial-complex#readme",
+  "homepage": "https://github.com/tdajs/normal-form#readme",
   "devDependencies": {
     "browserify": "^17.0.0",
     "browserify-shim": "^3.8.14",
