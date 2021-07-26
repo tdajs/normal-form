@@ -126,10 +126,14 @@ class NormalForm {
         
         this.diag = new Array<number>();
         this.reduce(0, Math.min(this.m, this.n));
-        
-        // Check sum
-        if(! equalMatrix( multiplyMat(this.A, this.P), multiplyMat(this.Q, this.D) ) )
-            throw new Error('Reduction failed.');
+    }
+    
+    /**
+     * Checks if the decomposition is valid.
+     * @returns `true` is the decomposition is valid, otherwise `false`.
+     */
+    isValid() {
+        return equalMatrix( multiplyMat(this.A, this.P), multiplyMat(this.Q, this.D) );
     }
 
     private reduce(startOffset: number, endOffset: number) {
